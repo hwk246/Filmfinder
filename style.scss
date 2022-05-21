@@ -2,7 +2,7 @@ $general-background: black;
 $header-color: linear-gradient(#ffffff 35%, #000000);
 $header-banner-background: rgb(190, 157, 6);
 $header-banner-text: black;
-$gneral-text-color: rgb(255, 255, 255);
+$gneral-text-color: rgb(237, 240, 197);
 
 * {
   margin: 0;
@@ -48,12 +48,13 @@ div.header {
       font-size: 50px;
       color: rgb(105, 77, 0);
       padding-left: 350px;
-      box-shadow: 1px 2px 15px 0px black;
+      box-shadow: 1px 2px 15px 0px #000000;
     }
     & img {
       height: 200px;
       position: absolute;
       left: 120px;
+      top: -5px;
     }
   }
 
@@ -74,25 +75,60 @@ div.header {
       opacity: 0;
       font-size: 20px;
     }
-    & div.show {
+    & .show {
       opacity: 1;
     }
   }
-  & div.search-movie {
+  & .search-movie {
     position: absolute;
-    right: 20px;
-    top: 0;
+    right: 50px;
+    top: 5px;
+
+    & label {
+      font-weight: bold;
+      color: black;
+    }
 
     & input.text-search {
-      width: 275px;
+      width: 100px;
       height: 25px;
+      padding-left: 5px;
+      border: 1px solid #c4c4c4;
     }
 
     & button {
-      margin-top: 10px;
-      margin-left: 10px;
+      margin-left: 1px;
+      padding: 0 13px 0 13px;
       height: 25px;
       margin-right: 30px;
+    }
+
+    & .search-list {
+      position: absolute;
+      left: 75px;
+      top: 35px;
+      width: 103px;
+      line-height: 25px;
+      opacity: 0.85;
+      visibility: visible;
+    }
+
+    & .hidden {
+      visibility: hidden;
+    }
+
+    & li {
+      display: block;
+      color: black;
+      list-style: none;
+      background-color: #ffffff;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: blue;
+        font-weight: bold;
+      }
     }
   }
 }
@@ -112,21 +148,15 @@ div.movie-container {
     & img {
       margin: 10px;
       padding: 1px;
-      border: 1px solid wheat;
+      border: 1px solid #f5deb3;
       border-radius: 5px;
       height: 350px;
       width: 240px;
 
       &:hover {
-        box-shadow: 0px -1px 10px 3px rgb(126, 126, 126);
+        box-shadow: 0px -1px 10px 3px #7e7e7e;
         transform: scale(1.01);
       }
     }
   }
 }
-
-@media (max-width: 320px) {
- body {
-    background-color: red;
-  }
-} ;

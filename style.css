@@ -5,7 +5,7 @@
 
 body {
   font-family: "Dosis", sans-serif;
-  color: white;
+  color: #edf0c5;
   background-color: black;
 }
 
@@ -42,14 +42,15 @@ div.header div.head h1 {
   font-size: 50px;
   color: #694d00;
   padding-left: 350px;
-  -webkit-box-shadow: 1px 2px 15px 0px black;
-          box-shadow: 1px 2px 15px 0px black;
+  -webkit-box-shadow: 1px 2px 15px 0px #000000;
+          box-shadow: 1px 2px 15px 0px #000000;
 }
 
 div.header div.head img {
   height: 200px;
   position: absolute;
   left: 120px;
+  top: -5px;
 }
 
 div.header div.nav-buttons {
@@ -72,26 +73,61 @@ div.header div.nav-buttons div {
   font-size: 20px;
 }
 
-div.header div.nav-buttons div.show {
+div.header div.nav-buttons .show {
   opacity: 1;
 }
 
-div.header div.search-movie {
+div.header .search-movie {
   position: absolute;
-  right: 20px;
-  top: 0;
+  right: 50px;
+  top: 5px;
 }
 
-div.header div.search-movie input.text-search {
-  width: 275px;
+div.header .search-movie label {
+  font-weight: bold;
+  color: black;
+}
+
+div.header .search-movie input.text-search {
+  width: 100px;
   height: 25px;
+  padding-left: 5px;
+  border: 1px solid #c4c4c4;
 }
 
-div.header div.search-movie button {
-  margin-top: 10px;
-  margin-left: 10px;
+div.header .search-movie button {
+  margin-left: 1px;
+  padding: 0 13px 0 13px;
   height: 25px;
   margin-right: 30px;
+}
+
+div.header .search-movie .search-list {
+  position: absolute;
+  left: 75px;
+  top: 35px;
+  width: 103px;
+  line-height: 25px;
+  opacity: 0.85;
+  visibility: visible;
+}
+
+div.header .search-movie .hidden {
+  visibility: hidden;
+}
+
+div.header .search-movie li {
+  display: block;
+  color: black;
+  list-style: none;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+
+div.header .search-movie li:hover {
+  color: blue;
+  font-weight: bold;
 }
 
 div.movie-container ul {
@@ -114,7 +150,7 @@ div.movie-container ul li {
 div.movie-container ul img {
   margin: 10px;
   padding: 1px;
-  border: 1px solid wheat;
+  border: 1px solid #f5deb3;
   border-radius: 5px;
   height: 350px;
   width: 240px;
@@ -125,11 +161,5 @@ div.movie-container ul img:hover {
           box-shadow: 0px -1px 10px 3px #7e7e7e;
   -webkit-transform: scale(1.01);
           transform: scale(1.01);
-}
-
-@media (max-width: 320px) {
-  body {
-    background-color: red;
-  }
 }
 /*# sourceMappingURL=style.css.map */

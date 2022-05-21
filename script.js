@@ -8,10 +8,13 @@ addMoviesToDom = (movieTitlesArray, moviePosterArray, movieImdbId) => {
     parentUl.appendChild(title);
   });
 
-  // -----> create a to li including attribute hreft with Url
-  const lis = Array.from(document.getElementsByTagName("li"));
+  // -----> create an 'a' to 'li' including attribute href with Url
+  const lis = Array.from(document.querySelectorAll(".movie-container li"));
+
   for (liCounter = 0; liCounter < lis.length; liCounter++) {
-    const parentLi = document.getElementsByTagName("li")[liCounter];
+    const parentLi = document.querySelectorAll(".movie-container li")[
+      liCounter
+    ];
     const newA = document.createElement("a");
     newA.setAttribute(
       "href",
@@ -58,38 +61,62 @@ Array.from(filterbtns).forEach((btn) => {
 
 /*Funtion to remove all img/ a/ li elements from DOM*/
 const removeChildren = () => {
-  const adultA = Array.from(document.getElementsByTagName("a"));
-  const childImg = Array.from(document.querySelectorAll("main img"));
-  const adultLi = Array.from(document.getElementsByTagName("li"));
-
-  for (let i = 0; i < adultA.length; i++) {
-    adultA[i].removeChild(childImg[i]);
-    adultLi[i].removeChild(adultA[i]);
-    parentUl.removeChild(adultLi[i]);
-  }
+  parentUl.innerHTML = "";
 };
 
 // function to read input text
-const textInput = document.getElementById("search");
-textInput.addEventListener("click", (e) => {
-  const input = document.getElementById("search-input").value;
-  if (
-    input === "Latest" ||
-    input === "Batman" ||
-    input === "Avengers" ||
-    input === "X-Men" ||
-    input === "Princess"
-  ) {
-    filterMovies(input);
-  } else {
-    const message = document.getElementById("search-input");
-    message.value = "";
-  }
-  //--- turn all radiobuttons off
-  const radioBtns = document.querySelectorAll("input.filterbtn");
-  Array.from(radioBtns).forEach((radioBtn) => {
-    radioBtn.checked = false;
+const textInput = document.getElementById("search-input");
+textInput.addEventListener("keyup", (e) => {
+  // push possible choices in new list (newSearchItems)
+  const input = document.getElementById("search-input").value.toLowerCase();
+  let newSearchItems = [];
+  const searchItems = ["Batman", "Avengers", "Princess", "Latest", "X-Men"];
+  // empty unordered list
+  Array.from(document.querySelectorAll(".search-list ul")).forEach((ul) => {
+    ul.innerHTML = "";
   });
+  // go through list and find a match. insert it in a new list
+  searchItems.forEach((name) => {
+    if (name.toLowerCase().match(input) && input != "") {
+      newSearchItems.push(name);
+    }
+  });
+  // if no match is found message wil be no-items found
+  if (newSearchItems.length === 0 && input != "") {
+    newSearchItems.push("no-items found");
+  }
+  // append the list li items to the parent ul in DOM
+  newSearchItems.forEach((choice) => {
+    const searchListUl = document.querySelector(".search-list ul");
+    const searchListLi = document.createElement("li");
+    searchListUl.appendChild(searchListLi).innerHTML = choice;
+  });
+
+  // add eventlistener to menu list items so they can be selected
+  const chosenLi = document.querySelectorAll(".search-list li");
+
+  Array.from(chosenLi).forEach((chosen) => {
+    chosen.addEventListener("click", (e) => {
+      const selectedMovie = chosen.textContent;
+      document.querySelector(".search-list").classList.add("hidden");
+      document.querySelector(".search-movie input").value = "";
+      //--- turn all radiobuttons off
+      const radioBtns = document.querySelectorAll("input.filterbtn");
+      Array.from(radioBtns).forEach((radioBtn) => {
+        radioBtn.checked = false;
+      });
+
+      filterMovies(selectedMovie);
+    });
+  });
+});
+
+const textInputField = document.querySelector(".search-movie input");
+textInputField.addEventListener("click", () => {
+  Array.from(document.querySelectorAll(".search-list ul")).forEach((ul) => {
+    ul.innerHTML = "";
+  });
+  document.querySelector(".search-list").classList.remove("hidden");
 });
 
 /* function to find al the movies (title poster and filmcode) based on target-value from filter buttons en text input*/
@@ -120,17 +147,15 @@ const filterMovies = (wordInMovie) => {
   addMoviesToDom(movieTitlesArray, moviePostersArray, movieImdbId);
 };
 
-// Eventlisteners for menu
+// Eventlisteners for main-menu
 const menu = Array.from(document.querySelectorAll("div.nav-buttons div"));
 const start = document.querySelector(".hamburger");
 const buttons = Array.from(document.querySelectorAll("nav input.filterbtn"));
-console.log(buttons);
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     menu.forEach((item) => {
       item.classList.toggle("show");
-      console.log(item);
     });
   });
 });
@@ -138,6 +163,5 @@ buttons.forEach((button) => {
 start.addEventListener("mouseenter", () => {
   menu.forEach((item) => {
     item.classList.toggle("show");
-    console.log(item);
   });
 });

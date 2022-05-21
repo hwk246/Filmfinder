@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="./rocketIcon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
 
     <script defer type="text/javascript" src="./movie.js"></script>
@@ -22,7 +26,7 @@
             <span></span>
             <span></span>
           </div>
-         
+
           <h1>Winc Film finder</h1>
           <img src="./img/filmstrip.png" alt="" />
         </div>
@@ -81,14 +85,21 @@
               <label for="filter-batman"> <b>Batman</b> movies</label>
             </div>
           </div>
+          <!-- ------------------------- -->
           <div class="search-movie">
+            <!-- <button id="search" type="button">Search</button> -->
+            <label for="search-input">Search : </label>
             <input
               class="text-search"
               id="search-input"
               type="text"
-              placeholder="Latest, Avengers, X-Men, Princes, or Batman"
+              placeholder="Movie"
             />
-            <button id="search" type="button">Search</button>
+            <!-- ------------------------------------- -->
+            <div class="search-list">
+              <ul></ul>
+            </div>
+            <!-- ------------------------------------- -->
           </div>
         </nav>
       </div>
